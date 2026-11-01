@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="theme-color" content="#4c78a8">
+
+<title>Morning Briefing</title>
+
+<style>
+
+*{
+
+  box-sizing:border-box;
+
+  -webkit-tap-highlight-color:transparent;
+
+}
+
+body{
+
+  margin:0;
+
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+
+  color:white;
+
+  min-height:100vh;
+
+  background:
+
+    linear-gradient(rgba(20,60,100,.20),rgba(15,45,80,.58)),
+
+    url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=85")
+
+    center/cover fixed;
+
+}
+
+body:before{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  backdrop-filter:saturate(115%);
+
+  pointer-events:none;
+
+}
+
+.app{
+
+  position:relative;
+
+  max-width:520px;
+
+  margin:auto;
+
+  padding:22px 16px 110px;
+
+}
+
+/* HEADER */
+
+.header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:16px;
+
+}
+
+.brand{
+
+  font-size:24px;
+
+  font-weight:800;
+
+}
+
+.brand small{
+
+  display:block;
+
+  font-size:11px;
+
+  font-weight:500;
+
+  opacity:.8;
+
+  margin-top:3px;
+
+}
+
+.date{
+
+  padding:9px 13px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.18);
+
+  backdrop-filter:blur(18px);
+
+  font-size:13px;
+
+}
+
+.hello{
+
+  margin:18px 0;
+
+}
+
+.hello h1{
+
+  margin:0;
+
+  font-size:29px;
+
+}
+
+.hello p{
+
+  margin:7px 0 0;
+
+  opacity:.86;
+
+  font-size:14px;
+
+  line-height:1.5;
+
+}
+
+/* GLASS */
+
+.glass{
+
+  background:linear-gradient(
+
+    135deg,
+
+    rgba(255,255,255,.25),
+
+    rgba(255,255,255,.10)
+
+  );
+
+  border:1px solid rgba(255,255,255,.28);
+
+  box-shadow:0 12px 30px rgba(0,30,60,.18);
+
+  backdrop-filter:blur(20px);
+
+  -webkit-backdrop-filter:blur(20px);
+
+  border-radius:22px;
+
+}
+
+/* WEATHER */
+
+.weather{
+
+  padding:18px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+.weather-title{
+
+  font-size:12px;
+
+  opacity:.8;
+
+}
+
+.temp{
+
+  font-size:38px;
+
+  font-weight:800;
+
+  margin-top:5px;
+
+}
+
+.temp span{
+
+  font-size:20px;
+
+  opacity:.65;
+
+}
+
+.sun{
+
+  font-size:52px;
+
+}
+
+.rain{
+
+  font-size:12px;
+
+  margin-top:5px;
+
+  opacity:.85;
+
+}
+
+/* GRID */
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:12px;
+
+}
+
+.card{
+
+  padding:16px;
+
+  min-height:145px;
+
+}
+
+.card h3,
+
+.news-section h3,
+
+.talk h3,
+
+.study h3{
+
+  margin:0 0 13px;
+
+  font-size:16px;
+
+}
+
+.schedule-main{
+
+  text-align:center;
+
+  font-size:20px;
+
+  font-weight:700;
+
+  margin:20px 0 12px;
+
+}
+
+.mini{
+
+  font-size:12px;
+
+  line-height:1.8;
+
+  opacity:.9;
+
+}
+
+.task{
+
+  display:flex;
+
+  gap:8px;
+
+  margin:10px 0;
+
+  font-size:12px;
+
+  line-height:1.4;
+
+}
+
+.number{
+
+  flex:none;
+
+  display:flex;
+
+  width:23px;
+
+  height:23px;
+
+  border-radius:50%;
+
+  background:white;
+
+  color:#315d89;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-weight:800;
+
+}
+
+/* NEWS */
+
+.news-section{
+
+  margin-top:12px;
+
+  padding:16px;
+
+}
+
+.news-scroll{
+
+  display:flex;
+
+  gap:10px;
+
+  overflow-x:auto;
+
+  scrollbar-width:none;
+
+}
+
+.news-scroll::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+.news{
+
+  min-width:180px;
+
+  overflow:hidden;
+
+  background:rgba(255,255,255,.88);
+
+  color:#17344e;
+
+  border-radius:17px;
+
+}
+
+.news-image{
+
+  height:95px;
+
+  background-size:cover;
+
+  background-position:center;
+
+}
+
+.news-content{
+
+  padding:11px;
+
+}
+
+.tag{
+
+  display:inline-block;
+
+  color:white;
+
+  background:#1677df;
+
+  padding:4px 8px;
+
+  border-radius:12px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  margin-bottom:7px;
+
+}
+
+.news-title{
+
+  font-size:12px;
+
+  font-weight:750;
+
+  line-height:1.45;
+
+}
+
+.news-sub{
+
+  font-size:10px;
+
+  opacity:.65;
+
+  line-height:1.4;
+
+  margin-top:5px;
+
+}
+
+/* LOWER */
+
+.lower{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:12px;
+
+}
+
+.talk,
+
+.study{
+
+  padding:16px;
+
+  min-height:155px;
+
+}
+
+.quote{
+
+  background:rgba(255,255,255,.12);
+
+  border-radius:15px;
+
+  padding:12px;
+
+  font-size:12px;
+
+  line-height:1.65;
+
+}
+
+.progress-wrap{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.progress{
+
+  width:72px;
+
+  height:72px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:
+
+    conic-gradient(#63c5ff 40%,rgba(255,255,255,.16) 0);
+
+}
+
+.progress-inner{
+
+  width:57px;
+
+  height:57px;
+
+  border-radius:50%;
+
+  background:rgba(42,82,120,.75);
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:10px;
+
+}
+
+.progress-inner strong{
+
+  font-size:18px;
+
+}
+
+.theme{
+
+  font-size:12px;
+
+  line-height:1.5;
+
+}
+
+/* PAGES */
+
+.page{
+
+  display:none;
+
+}
+
+.page.active{
+
+  display:block;
+
+}
+
+.simple-page{
+
+  padding:20px;
+
+}
+
+.simple-page h2{
+
+  margin-top:0;
+
+}
+
+.item{
+
+  padding:15px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.18);
+
+}
+
+.item:last-child{
+
+  border-bottom:0;
+
+}
+
+/* NAV */
+
+.nav{
+
+  position:fixed;
+
+  z-index:20;
+
+  bottom:12px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:calc(100% - 24px);
+
+  max-width:500px;
+
+  display:flex;
+
+  justify-content:space-around;
+
+  padding:9px 5px calc(9px + env(safe-area-inset-bottom));
+
+  background:rgba(70,105,140,.70);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  backdrop-filter:blur(25px);
+
+  -webkit-backdrop-filter:blur(25px);
+
+  border-radius:25px;
+
+  box-shadow:0 10px 35px rgba(0,20,50,.35);
+
+}
+
+.nav button{
+
+  border:0;
+
+  background:transparent;
+
+  color:white;
+
+  opacity:.72;
+
+  font-size:10px;
+
+  min-width:60px;
+
+  padding:5px;
+
+}
+
+.nav button span{
+
+  display:block;
+
+  font-size:22px;
+
+  margin-bottom:3px;
+
+}
+
+.nav button.active{
+
+  opacity:1;
+
+  background:rgba(92,185,255,.35);
+
+  border-radius:17px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:380px){
+
+  .grid,
+
+  .lower{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .brand{
+
+    font-size:21px;
+
+  }
+
+  .hello h1{
+
+    font-size:25px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="header">
+
+  <div class="brand">
+
+    ☀️ Morning Briefing
+
+    <small>青木さんの朝ブリーフィング</small>
+
+  </div>
+
+  <div class="date" id="todayDate">11/1</div>
+
+</div>
+
+<div class="hello">
+
+  <h1>おはようございます ☀️</h1>
+
+  <p>
+
+    今日も安全第一で。<br>
+
+    いい一日にしましょう。
+
+  </p>
+
+</div>
+
+<div class="glass weather">
+
+  <div>
+
+    <div class="weather-title">
+
+      📍 辻堂・藤沢の天気
+
+    </div>
+
+    <div class="temp">
+
+      21° <span>/ 11°</span>
+
+    </div>
+
+    <div class="rain">
+
+      降水確率 20% ・ 朝は上着がおすすめ
+
+    </div>
+
+  </div>
+
+  <div class="sun">🌤️</div>
+
+</div>
+
+<div class="grid">
+
+  <div class="glass card">
+
+    <h3>📅 今日の予定</h3>
+
+    <div class="schedule-main">
+
+      予定なし
+
+    </div>
+
+    <div class="mini">
+
+      🏠 13:00頃　帰宅予定<br>
+
+      🎮 午後　モンハン
+
+    </div>
+
+  </div>
+
+  <div class="glass card">
+
+    <h3>✅ 今日やること TOP3</h3>
+
+    <div class="task">
+
+      <div class="number">1</div>
+
+      <div>無電柱化の勉強（30分）</div>
+
+    </div>
+
+    <div class="task">
+
+      <div class="number">2</div>
+
+      <div>駐在の課題候補を1つメモ</div>
+
+    </div>
+
+    <div class="task">
+
+      <div class="number">3</div>
+
+      <div>11/6 免許更新の確認</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="glass news-section">
+
+<h3>📰 3分でわかる 主要ニュース</h3>
+
+<div class="news-scroll">
+
+  <div class="news">
+
+    <div class="news-image"
+
+      style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80')">
+
+    </div>
+
+    <div class="news-content">
+
+      <div class="tag">無電柱化</div>
+
+      <div class="news-title">
+
+        無電柱化の最新動向をチェック
+
+      </div>
+
+      <div class="news-sub">
+
+        駐在につながるニュースを最優先で表示
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="news">
+
+    <div class="news-image"
+
+      style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80')">
+
+    </div>
+
+    <div class="news-content">
+
+      <div class="tag">電力・インフラ</div>
+
+      <div class="news-title">
+
+        東京電力・電力業界の重要ニュース
+
+      </div>
+
+      <div class="news-sub">
+
+        仕事で使える話題を短くまとめる
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="news">
+
+    <div class="news-image"
+
+      style="background-image:url('https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=600&q=80')">
+
+    </div>
+
+    <div class="news-content">
+
+      <div class="tag">BayStars</div>
+
+      <div class="news-title">
+
+        横浜DeNAベイスターズ
+
+      </div>
+
+      <div class="news-sub">
+
+        試合・選手・球団ニュースをチェック
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="news">
+
+    <div class="news-image"
+
+      style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80')">
+
+    </div>
+
+    <div class="news-content">
+
+      <div class="tag">湘南</div>
+
+      <div class="news-title">
+
+        神奈川・湘南の今日の話題
+
+      </div>
+
+      <div class="news-sub">
+
+        地域ニュースを1分で確認
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="lower">
+
+  <div class="glass talk">
+
+    <h3>💬 今日の雑談ネタ</h3>
+
+    <div class="quote">
+
+      「スマートメーターの通信網、
+
+      水道の検針にも使われ始めた
+
+      みたいですね。」
+
+    </div>
+
+  </div>
+
+  <div class="glass study">
+
+    <h3>⏳ 駐在に向けた準備</h3>
+
+    <div class="progress-wrap">
+
+      <div class="progress">
+
+        <div class="progress-inner">
+
+          進捗
+
+          <strong>40%</strong>
+
+        </div>
+
+      </div>
+
+      <div class="theme">
+
+        <strong>今日のテーマ</strong><br><br>
+
+        無電柱化は<br>
+
+        なぜ時間がかかる？
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- SCHEDULE -->
+
+<section id="schedule" class="page">
+
+  <div class="glass simple-page">
+
+    <h2>📅 予定</h2>
+
+    <div class="item">
+
+      <strong>11/2　夜勤</strong><br>
+
+      09:00 → 翌10:00
+
+    </div>
+
+    <div class="item">
+
+      <strong>11/5　夜勤</strong><br>
+
+      09:00 → 翌10:00
+
+    </div>
+
+    <div class="item">
+
+      <strong>11/6　免許更新</strong><br>
+
+      藤沢警察署
+
+    </div>
+
+    <div class="item">
+
+      <strong>11/8　夜勤</strong><br>
+
+      09:00 → 翌10:00
+
+    </div>
+
+    <div class="item">
+
+      <strong>11/16　夜勤</strong><br>
+
+      09:00 → 翌10:00
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TASKS -->
+
+<section id="tasks" class="page">
+
+  <div class="glass simple-page">
+
+    <h2>✅ タスク</h2>
+
+    <div class="item">🔴 11/6 免許更新</div>
+
+    <div class="item">🔴 引き継ぎ書を作る</div>
+
+    <div class="item">🔴 寮申請</div>
+
+    <div class="item">🔴 定期申請</div>
+
+    <div class="item">🔴 勤務先登録</div>
+
+    <div class="item">🟠 無電柱化の勉強</div>
+
+    <div class="item">🟠 駐在の課題候補を3案考える</div>
+
+    <div class="item">🟠 Teamsを会社PCに入れる</div>
+
+    <div class="item">🟠 Outlookカレンダーを覚える</div>
+
+    <div class="item">🟡 スーツのカビをきれいにする</div>
+
+  </div>
+
+</section>
+
+<!-- NEWS -->
+
+<section id="news" class="page">
+
+  <div class="glass simple-page">
+
+    <h2>📰 ニュース</h2>
+
+    <div class="item">
+
+      ⚡ <strong>無電柱化</strong><br>
+
+      駐在に関係するニュースを最優先
+
+    </div>
+
+    <div class="item">
+
+      🔌 <strong>東京電力・電力業界</strong><br>
+
+      仕事に使える重要ニュース
+
+    </div>
+
+    <div class="item">
+
+      ⚾ <strong>横浜DeNAベイスターズ</strong><br>
+
+      試合・選手・球団情報
+
+    </div>
+
+    <div class="item">
+
+      🌊 <strong>神奈川・湘南</strong><br>
+
+      地域の重要ニュース
+
+    </div>
+
+    <div class="item">
+
+      🇯🇵 <strong>国内主要ニュース</strong><br>
+
+      上司との会話に使える話題
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STUDY -->
+
+<section id="study" class="page">
+
+  <div class="glass simple-page">
+
+    <h2>📖 学習</h2>
+
+    <div class="item">
+
+      <strong>🎯 駐在までのテーマ</strong><br><br>
+
+      無電柱化について、
+
+      現場経験を活かせる課題を探す。
+
+    </div>
+
+    <div class="item">
+
+      💡 無電柱化後の保守・災害対応
+
+    </div>
+
+    <div class="item">
+
+      💡 本社と現場の情報共有
+
+    </div>
+
+    <div class="item">
+
+      💡 無電柱化の優先順位
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+<!-- NAV -->
+
+<nav class="nav">
+
+<button class="active" onclick="openPage('home',this)">
+
+  <span>🏠</span>
+
+  ホーム
+
+</button>
+
+<button onclick="openPage('schedule',this)">
+
+  <span>📅</span>
+
+  予定
+
+</button>
+
+<button onclick="openPage('tasks',this)">
+
+  <span>✓</span>
+
+  タスク
+
+</button>
+
+<button onclick="openPage('news',this)">
+
+  <span>📰</span>
+
+  ニュース
+
+</button>
+
+<button onclick="openPage('study',this)">
+
+  <span>📖</span>
+
+  学習
+
+</button>
+
+</nav>
+
+<script>
+
+function openPage(page,button){
+
+  document
+
+    .querySelectorAll(".page")
+
+    .forEach(p=>p.classList.remove("active"));
+
+  document
+
+    .querySelectorAll(".nav button")
+
+    .forEach(b=>b.classList.remove("active"));
+
+  document
+
+    .getElementById(page)
+
+    .classList.add("active");
+
+  button.classList.add("active");
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+/* 今日の日付を自動表示 */
+
+const now = new Date();
+
+const days = [
+
+  "日","月","火","水","木","金","土"
+
+];
+
+document.getElementById("todayDate").textContent =
+
+  `${now.getMonth()+1}/${now.getDate()}（${days[now.getDay()]}）`;
+
+</script>
+
+</body>
+
+</html>
