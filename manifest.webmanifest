@@ -1,0 +1,25 @@
+{
+
+  "name": "Morning Briefing",
+
+  "short_name": "Morning",
+
+  "description": "青木さんの朝ブリーフィング",
+
+  "start_url": "./",
+
+  "scope": "./",
+
+  "display": "standalone",
+
+  "orientation": "portrait",
+
+  "background_color": "#315d89",
+
+  "theme_color": "#4c78a8",
+
+  "lang": "ja",
+
+  "icons": []
+
+}
